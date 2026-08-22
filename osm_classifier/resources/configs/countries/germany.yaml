@@ -1,0 +1,12 @@
+# Germany-specific metadata and filenames.
+# This file does not change the classification methodology.
+
+country:
+  name: Germany
+  slug: germany
+
+osm:
+  geofabrik_region: europe/germany
+
+crs:
+  projected: "EPSG:3035"

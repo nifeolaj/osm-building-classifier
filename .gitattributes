@@ -1,0 +1,10 @@
+osm_classifier/resources/model_weights/germany/with_height/l0_res_binary_lgb_PRODUCTION_FINAL.pkl filter=lfs diff=lfs merge=lfs -text
+osm_classifier/resources/model_weights/germany/with_height/l1a_res_subtypes_xgb_PRODUCTION_FINAL.pkl filter=lfs diff=lfs merge=lfs -text
+osm_classifier/resources/model_weights/germany/with_height/l1b_ind_binary_xgb_PRODUCTION_FINAL.pkl filter=lfs diff=lfs merge=lfs -text
+osm_classifier/resources/model_weights/germany/with_height/l2b_comm_binary_xgb_PRODUCTION_FINAL.pkl filter=lfs diff=lfs merge=lfs -text
+osm_classifier/resources/model_weights/germany/with_height/l3a_comm_subtypes_lgb_PRODUCTION_FINAL.pkl filter=lfs diff=lfs merge=lfs -text
+osm_classifier/resources/model_weights/germany/osm_only/l2b_comm_binary_xgb_PRODUCTION_FINAL.pkl filter=lfs diff=lfs merge=lfs -text
+osm_classifier/resources/model_weights/germany/osm_only/l3a_comm_subtypes_lgb_PRODUCTION_FINAL.pkl filter=lfs diff=lfs merge=lfs -text
+osm_classifier/resources/model_weights/germany/osm_only/l1a_res_subtypes_xgb_PRODUCTION_FINAL.pkl filter=lfs diff=lfs merge=lfs -text
+osm_classifier/resources/model_weights/germany/osm_only/l0_res_binary_lgb_PRODUCTION_FINAL.pkl filter=lfs diff=lfs merge=lfs -text
+osm_classifier/resources/model_weights/germany/osm_only/l1b_ind_binary_xgb_PRODUCTION_FINAL.pkl filter=lfs diff=lfs merge=lfs -text

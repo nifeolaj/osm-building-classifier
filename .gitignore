@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Build artifacts
+build/
+dist/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Generated pipeline data
+data/
+/data
+
+# Logs
+logs/
+*.log
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+
+/configs/
+/model_weights/
+

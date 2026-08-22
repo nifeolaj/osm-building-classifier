@@ -1,0 +1,107 @@
+# Shared settings used by every country.
+
+project:
+  name: osm-building-classifier
+  version: "0.1.0"
+
+data:
+  raw_dir: data/osm_classifier_data/raw
+  interim_dir: data/osm_classifier_data/interim
+  processed_dir: data/osm_classifier_data/processed
+  outputs_dir: outputs
+  model_weights_dir: model_weights
+
+extraction:
+  overwrite_existing: false
+
+model:
+  # The current trained models use German training data.
+  # They can still be applied to another country for transferability tests.
+  default_weights_directory: model_weights/germany
+
+export:
+  format: geoparquet
+
+country_pack:
+  required: false
+
+  # Country files may change only these operational sections.
+  # Classification logic is not country-specific.
+  overridable_keys:
+    - country
+    - osm
+    - crs
+    - model
+    - data
+
+osm:
+  download_base_url: "https://download.geofabrik.de"
+
+cleaning:
+  overwrite_existing: false
+  min_id_digits: 7
+
+stage2:
+  trusted_zones:
+    agreement_threshold: 0.90
+
+    min_buildings:
+      residential: 5
+      commercial: 3
+      industrial: 3
+      military: 1
+
+  rules:
+    small_building_filter:
+      max_area_sqm: 40
+      address_tier: 0
+
+    garage_filter:
+      min_area_sqm: 40
+      max_area_sqm: 50
+      max_distance_m: 5
+      address_tier: 0
+      house_address_tier: 2
+
+    residential_zone:
+      min_area_sqm: 80
+      max_area_sqm: 200
+      address_tier: 2
+
+  polygon_poi:
+    trusted_l1:
+      - civic
+      - commercial
+      - agricultural
+
+    min_source_precision: 0.85
+    min_source_buildings: 10
+
+features:
+  landuse:
+    max_distance_m: 5000
+    boundary_segment_m: 50
+    neighbour_radius_m: 200
+    query_chunk_size: 100000
+
+  poi:
+    max_distance_m: 5000
+    query_chunk_size: 100000
+
+  roads:
+    max_distance_m: 5000
+    boundary_segment_m: 50
+    density_radius_m: 200
+    query_chunk_size: 100000
+
+  rail_water:
+    max_distance_m: 5000
+    boundary_segment_m: 50
+    density_radius_m: 200
+    query_chunk_size: 100000
+
+models:
+  thresholds:
+    l0_res_binary: 0.35
+    l1b_ind_binary: 0.50
+    l2b_comm_binary: 0.40

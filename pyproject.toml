@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "osm-building-classifier"
+version = "0.1.0"
+description = "Generalizable national-scale building classification from OpenStreetMap"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Oluwanifemi Olajuyigbe"}
+]
+keywords = [
+    "OpenStreetMap",
+    "building classification",
+    "machine learning",
+    "geospatial",
+    "industrial sites",
+]
+
+dependencies = [
+    "geopandas",
+    "pandas",
+    "numpy",
+    "shapely",
+    "pyrosm",
+    "pyarrow",
+    "pyyaml",
+    "tqdm",
+    "scikit-learn",
+    "joblib",
+    "xgboost",
+    "lightgbm>=4.4.0",
+]
+
+
+[project.optional-dependencies]
+dev = [
+    "pytest"
+]
+
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["osm_classifier*"]
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+
+
+[project.scripts]
+osm-classifier = "osm_classifier.cli:main"
+
+[tool.setuptools.package-data]
+osm_classifier = [
+    "resources/configs/*.yaml",
+    "resources/configs/countries/*.yaml",
+    "resources/model_weights/germany/osm_only/*.pkl",
+    "resources/model_weights/germany/with_height/*.pkl",
+]
