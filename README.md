@@ -22,9 +22,10 @@ The pretrained machine-learning models were developed using German OSM data and 
 
 ## Installation
 
-Clone the repository and install the package:
+The pretrained model files are stored using Git Large File Storage (Git LFS). Install Git LFS on your system, then initialize it with `git lfs install` before cloning the repository.
 
 ```bash
+git lfs install
 git clone <repository-url>
 cd osm_building_classifier
 pip install -e .
@@ -102,7 +103,7 @@ When external height data are supplied, the package automatically uses the `with
 ```bash
 osm-classifier run france \
     --geofabrik-region europe/france \
-    --projected-crs EPSG:2154 \
+    --projected-crs EPSG:3035 \
     --overwrite
 ```
 
@@ -117,7 +118,7 @@ osm-classifier run france \
     --no-provenance
 ```
 
-## Command-line arguments
+## Main Command-line arguments
 
 | Argument | Description |
 |---|---|
@@ -152,16 +153,7 @@ osm_classifier/resources/model_weights/germany/with_height/
 
 The package also uses the German model thresholds and saved feature definitions.
 
-When these models are applied outside Germany, the results represent cross-country model transfer. Accuracy may differ because countries vary in:
-
-- OSM completeness;
-- tagging conventions;
-- building geometry;
-- settlement structure;
-- land-use patterns;
-- POI and transport-data coverage.
-
-Outputs for new countries should therefore be evaluated before being used for operational or high-stakes applications.
+When these models are applied outside Germany, the results represent cross-country model transfer and accuracy may differ. Outputs for new countries should therefore be evaluated before being used for operational applications.
 
 ## Final outputs
 
@@ -243,29 +235,39 @@ osm_classifier/resources/configs/countries/germany.yaml
 
 A country-specific YAML file is not required for other target countries. Their projected CRS and OSM source can be supplied through the CLI.
 
-## Package structure
+## Project structure
 
 ```text
-osm_classifier/
-├── cleaning/
-├── context/
-├── export/
-├── extraction/
-├── features/
-├── models/
-├── postprocess/
-├── resources/
-│   ├── configs/
-│   └── model_weights/
-├── rules/
-├── taxonomy/
-├── cli.py
-├── config.py
-├── paths.py
-└── pipeline.py
+osm_building_classifier/
+├── notebooks/
+│   └── reference/
+├── osm_classifier/
+│   ├── cleaning/
+│   ├── context/
+│   ├── export/
+│   ├── extraction/
+│   ├── features/
+│   ├── models/
+│   ├── postprocess/
+│   ├── resources/
+│   │   ├── configs/
+│   │   └── model_weights/
+│   ├── rules/
+│   ├── taxonomy/
+│   ├── validation/
+│   ├── cli.py
+│   ├── config.py
+│   ├── paths.py
+│   └── pipeline.py
+├── scripts/
+│   └── slurm/
+├── tests/
+├── .gitignore
+├── README.md
+└── pyproject.toml
 ```
 
-The `notebooks/reference/` directory contains the research notebooks used during development of the classification methodology. The production implementation is contained in the `osm_classifier/` package.
+The production implementation is contained in the `osm_classifier/` package. The `notebooks/reference/` directory contains the research notebooks used during development of the classification methodology. Example SLURM scripts for national-scale execution are provided in `scripts/slurm/`.
 
 ## Testing
 
@@ -281,6 +283,4 @@ The tests cover command-line behavior, input validation, optional height matchin
 ## Runtime
 
 National-scale processing can require substantial memory and processing time. The CLI reports the duration of each pipeline stage and the total runtime.
-
-Feature engineering and spatial matching are typically the most resource-intensive stages.
 

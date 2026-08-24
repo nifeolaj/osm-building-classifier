@@ -14,6 +14,7 @@ source ~/.bashrc
 conda activate osm_env
 
 PROJECT_DIR=/path/to/osm_building_classifier
+HEIGHT_DATA=/path/to/building_heights.parquet
 
 cd "$PROJECT_DIR"
 mkdir -p logs
@@ -21,9 +22,11 @@ mkdir -p logs
 echo "Started: $(date)"
 echo "Host: $(hostname)"
 
-osm-classifier run netherlands \
-    --geofabrik-region europe/netherlands \
+osm-classifier run germany \
+    --geofabrik-region europe/germany \
     --projected-crs EPSG:3035 \
+    --height-data "$HEIGHT_DATA" \
+    --height-column height_m \
     --overwrite
 
 echo "Finished: $(date)"

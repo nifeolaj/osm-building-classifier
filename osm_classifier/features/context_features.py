@@ -135,7 +135,7 @@ def _add_neighbour_area_features(buildings: gpd.GeoDataFrame, projected: gpd.Geo
             neighbour_max[start:end] = batch_max.astype(np.float32)
             neighbour_std[start:end] = batch_std.astype(np.float32)
 
-        print(f"[features] Neighbour areas: {end:,} / {len(buildings):,}")
+       # print(f"[features] Neighbour areas: {end:,} / {len(buildings):,}")
 
         del left_indices, right_indices
         del global_left, local_left, neighbour_indices

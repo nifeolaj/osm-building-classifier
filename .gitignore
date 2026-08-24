@@ -29,3 +29,11 @@ logs/
 /configs/
 /model_weights/
 
+# Development/execution scripts
+scripts/*
+!scripts/slurm/
+scripts/slurm/*
+!scripts/slurm/run_full_pipeline.slurm
+!scripts/slurm/run_full_pipeline_height.slurm
+
+
